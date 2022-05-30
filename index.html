@@ -35,6 +35,15 @@
 <script>
     // 1. Cuando cambie el valor del selector, tenemos que detectar que opción hemos escogido. Probad que sois capaces de recuperar el valor seleccionado por el usuario con un console.log
 
+
+     window.addEventListener('load', async function(event) {
+        let url = (`https://pokeapi.co/api/v2/pokemon`);
+        let response = await fetch(url);
+        let pokes = await response.json();
+        console.log(pokes);
+
+    }); 
+
     let pokeSel = document.querySelector("#select-pokemon");
     let pokeChange = document.querySelector("#shiny");
     let pokeShiny;
@@ -46,7 +55,7 @@
 
         let poke = await response.json()
 
-        console.log(poke.sprites);
+        //console.log(poke.sprites);
 
         document.querySelector("h5").textContent = poke.name;
         pokeImg = document.querySelector("img");
