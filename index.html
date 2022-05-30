@@ -39,34 +39,30 @@
     let pokeSel = document.querySelector("#select-pokemon");
     let pokeChange = document.querySelector("#shiny");
     let pokeShiny;
-    
-    
 
-     window.addEventListener('load', async function(event) {
-        let url = ("https://pokeapi.co/api/v2/pokemon?offset=10&limit=10");
+
+
+    window.addEventListener('load', async function (event) {
+        let url = ("https://pokeapi.co/api/v2/pokemon?offset=20&limit=20");
         let response = await fetch(url);
         let pokes = await response.json();
-        
-        //console.log(pokes.results);
-        //pokes.forEach(element => {console.log(pokes.name);   
-        //});
-        //console.log(typeof(pokes));
-        //console.log(Object.keys(pokes.results).length);
 
-        //console.log(pokes.results);
 
-         Object.keys(pokes.results).forEach(function(key,index) 
-         
-         {
-             let pokeName = pokes.results[key].name
-        console.log(key, pokeName);
+        Object.keys(pokes.results).forEach(function (key, index)
 
-}); 
-        
+            {
+                let pokeName = pokes.results[key].name
+                console.log(key, pokeName);
 
-    }); 
+                let pokeOption = `<option value="${pokeName}">${pokeName}</option>`;
+                pokeSel.innerHTML += pokeOption;
 
-    
+            });
+
+
+    });
+
+
 
     pokeSel.addEventListener("change", async function (event) {
         let url = (`https://pokeapi.co/api/v2/pokemon/${event.target.value}`);
@@ -83,13 +79,13 @@
         pokeImg.src = poke.sprites.front_default;
         pokeImg.classList.remove("d-none");
 
-        pokeChange.addEventListener("click", function(){
+        pokeChange.addEventListener("click", function () {
             pokeImg.src = pokeShiny;
         })
 
     });
 
-    
+
 
 
 
