@@ -37,8 +37,14 @@
 
     let pokeSel = document.querySelector("#select-pokemon");
 
-    pokeSel.addEventListener("change", function (event) {
+    pokeSel.addEventListener("change", async function (event) {
         let url = (`https://pokeapi.co/api/v2/pokemon/${event.target.value}`);
+
+        let response = await fetch(url);
+
+        let poke = await response.json()
+
+        console.log(poke);
     });
 
     // 2. En función de la opción escogida, 'montaremos' una URL
